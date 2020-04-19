@@ -1,3 +1,19 @@
-const { db_address, db_name, db_user, db_pass } = require("../../config");
+const { MongoClient } = require("mongodb");
 
-const url = `postgres://${db_user}:${db_pass}@${db_address}/${db_name}`;
+const { db_address, db_name } = require("../../config");
+
+const uri = `mongodb://${db_address}`;
+
+const db = new MongoClient(uri, { useUnifiedTopology: true });
+
+function connectDB() {
+  return new Promise((resolve, reject) =>
+    db.connect((err, client) => {
+      if (err) reject(err);
+      const db = client.db(db_name);
+      resolve(db);
+    }),
+  );
+}
+
+module.exports = connectDB;

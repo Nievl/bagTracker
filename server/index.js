@@ -2,7 +2,7 @@ const express = require("express");
 const { port, pathWeb, db_name } = require("../config");
 const router = require("./router/router");
 const logger = require("morgan");
-const connectDB = require("./db/pool");
+const connectDB = require("./db/db");
 
 const app = express();
 

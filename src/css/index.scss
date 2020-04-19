@@ -1,0 +1,49 @@
+$header_height: 4em;
+
+header,
+footer {
+  justify-content: space-between;
+  height: $header_height;
+  color: #fff;
+  background-color: #2e4c6e;
+  border: 0.1em solid #999999;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  button {
+    max-height: 2.5em;
+  }
+  a {
+    color: #fff;
+    &:hover {
+      color: #000000;
+    }
+  }
+  > * {
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+  }
+  > div {
+    display: flex;
+    > * {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+    }
+  }
+  > .form-group {
+    display: flex;
+    margin-bottom: unset;
+    > * {
+      margin-bottom: unset;
+    }
+  }
+}
+
+.flex-column .navbar {
+  position: absolute;
+  align-self: center;
+  left: 0;
+  height: calc(100vh - #{2 * $header_height});
+  display: flex;
+  align-items: flex-start;
+}

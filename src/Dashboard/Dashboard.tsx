@@ -1,30 +1,21 @@
 import React, { useEffect } from "react";
 import Menu from "./Menu";
 import { connect } from "react-redux";
-// import viewSetter from "../../store/provider/viewSetter";
-// import certSetter from "../../store/provider/certSetter";
-// import serviceSetter from "../../store/provider/serviceSetter";
-// import proposalSetter from "../../store/provider/proposalSetter";
-// import mainView from "./mainView";
+
 import MessageWindow from "../MessageWindow/MessageWindow";
 import { Tstate } from "../store/reducers";
 import mainView from "./mainView";
+import bagSetter from "../store/actions/bags";
 
 function Dashboard({ name }: { name: string }) {
   useEffect(() => {
-    // certSetter.getAll();
-    // viewSetter.addInfo();
-    // proposalSetter.add();
-    // serviceSetter.add();
+    bagSetter.get();
   }, []);
-
-  // const { name = "account" } = _view;
-  // const { message, header } = _main;
 
   return (
     <main>
       <Menu />
-      {mainView[name]}
+      <div className="main_board">{mainView[name]}</div>
       <MessageWindow />
     </main>
   );

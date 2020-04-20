@@ -12,7 +12,6 @@ function App() {
         </div>
       </header>
       <Dashboard />
-      <footer>&copy; 2019, Levin</footer>
     </>
   );
 }

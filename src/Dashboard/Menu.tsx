@@ -1,25 +1,27 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
 import mainSetter from "../store/actions/mainSetter";
+import { Menu } from "antd";
+import { PieChartOutlined, DesktopOutlined, ContainerOutlined } from "@ant-design/icons";
 
-const selectHandler = (e: string) => mainSetter.change(e);
+const selectHandler = ({ key }: { key: string }) => mainSetter.change(key);
 
-function Menu() {
+function MainMenu() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav justify defaultActiveKey="contract" onSelect={selectHandler} className="flex-column navbar">
-          <Nav.Item>
-            <Nav.Link eventKey="account">Баги</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="users">Пользователи</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <Menu defaultSelectedKeys={["bags"]} mode="inline" className="main_menu" onSelect={selectHandler}>
+      <Menu.Item key="bags">
+        <PieChartOutlined />
+        <span>Баги</span>
+      </Menu.Item>
+      <Menu.Item key="users">
+        <DesktopOutlined />
+        <span>Пользователи</span>
+      </Menu.Item>
+      <Menu.Item key="3" disabled>
+        <ContainerOutlined />
+        <span>reserved</span>
+      </Menu.Item>
+    </Menu>
   );
 }
 
-export default Menu;
+export default MainMenu;

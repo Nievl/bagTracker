@@ -1,9 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { store } from "./index";
 
-// import { authConstruct } from "../commonFunctions/authConstruct";
-// import { dataSetExtractor } from "../commonFunctions/extractors";
-
 class Main {
   addMessage(message: string = "", header: string = "") {
     store.dispatch({ type: "ADD_MESSAGE", message, header });

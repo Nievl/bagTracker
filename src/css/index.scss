@@ -10,32 +10,20 @@ footer {
   border-radius: 5px;
   display: flex;
   align-items: center;
-  button {
-    max-height: 2.5em;
+}
+
+main {
+  height: calc(100vh - #{$header_height});
+  display: flex;
+  .main_board {
+    height: 100%;
+    width: 100%;
+    // background-color: red;
   }
-  a {
-    color: #fff;
-    &:hover {
-      color: #000000;
-    }
-  }
-  > * {
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-  }
-  > div {
-    display: flex;
-    > * {
-      margin-right: 0.5em;
-      margin-left: 0.5em;
-    }
-  }
-  > .form-group {
-    display: flex;
-    margin-bottom: unset;
-    > * {
-      margin-bottom: unset;
-    }
+
+  .main_menu {
+    height: calc(100vh - #{$header_height});
+    width: 15vw;
   }
 }
 
@@ -43,7 +31,7 @@ footer {
   position: absolute;
   align-self: center;
   left: 0;
-  height: calc(100vh - #{2 * $header_height});
+
   display: flex;
   align-items: flex-start;
 }

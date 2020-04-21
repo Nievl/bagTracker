@@ -1,0 +1,12 @@
+.search_bar {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  > label {
+    display: flex;
+    > span {
+      max-width: 20rem;
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 const columns = [
   {
-    Header: "Логин",
-    accessor: "login",
+    title: "Имя",
+    dataIndex: "name",
     minWidth: 50,
   },
 ];

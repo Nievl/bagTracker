@@ -1,7 +1,7 @@
 import { store } from "./index";
 import { onCatch } from "../requests.ts/requestData";
 
-class Bags {
+class Users {
   get() {
     fetch("/query/bags")
       .then(res => res.json())
@@ -26,6 +26,6 @@ class Bags {
   }
 }
 
-const bagSetter = new Bags();
+const userSetter = new Users();
 
-export default bagSetter;
+export default userSetter;

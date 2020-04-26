@@ -1,9 +1,12 @@
+const { ObjectID } = require("mongodb");
+
 async function newBag(req, res) {
   const collection = req.app.locals.db.collection("bags");
   if (!req.body) return res.sendStatus(400);
 
   try {
-    const { name, status, description, userID } = req.body;
+    const { name, status, description, userID: rawID } = req.body;
+    const userID = rawID === "-1" ? rawID : new ObjectID(rawID);
     const bag = { name, status, description, userID };
 
     const result = await collection.insertOne(bag);

@@ -3,8 +3,8 @@ async function newUser(req, res) {
   if (!req.body) return res.sendStatus(400);
 
   try {
-    const { name, status, description, userID } = req.body;
-    const User = { name, status, description, userID };
+    const { name } = req.body;
+    const User = { name };
 
     const result = await collection.insertOne(User);
     const data = result.ops;

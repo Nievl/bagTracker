@@ -1,9 +1,12 @@
+import { Tuser } from "./users";
+
 export const emptyBag: Tbag = {
   _id: "",
   name: "",
   status: "",
   description: "",
   userID: "",
+  user: [],
 };
 
 const initialState: Tbags = {
@@ -50,6 +53,7 @@ export interface Tbag {
   status: string;
   description: string;
   userID: string;
+  user: Tuser[];
 }
 
 export interface Tbags {

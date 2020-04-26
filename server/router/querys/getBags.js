@@ -1,7 +1,20 @@
 async function getBags(req, res) {
   const collection = req.app.locals.db.collection("bags");
   try {
-    const result = await collection.find().toArray();
+    // const result = await collection.find().toArray();
+
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "users",
+            localField: "userID",
+            foreignField: "_id",
+            as: "user",
+          },
+        },
+      ])
+      .toArray();
     let response;
 
     if (result) {

@@ -2,6 +2,7 @@ import React from "react";
 import { Tag } from "antd";
 import bagSetter from "../store/actions/bags";
 import { Tbag } from "../store/reducers/bags";
+import { Tuser } from "../store/reducers/users";
 
 const columns = [
   {
@@ -20,7 +21,8 @@ const columns = [
   },
   {
     title: "Пользователь",
-    dataIndex: "userName",
+    dataIndex: "user",
+    render: (user: Tuser[]) => user[0]?.name || "не назначен",
   },
   {
     title: "Описание",

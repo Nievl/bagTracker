@@ -1,11 +1,13 @@
 const { ObjectID } = require("mongodb");
+
 async function editBag(req, res) {
   const collection = req.app.locals.db.collection("bags");
   if (!req.body) return res.sendStatus(400);
 
   try {
-    const { name, status, description, userID, _id: id } = req.body;
+    const { name, status, description, userID: rawID, _id: id } = req.body;
     if (!id) throw new Error("_id is required");
+    const userID = rawID === "-1" ? rawID : new ObjectID(rawID);
     const bag = { name, status, description, userID };
     const _id = new ObjectID(id);
     const result = await collection.findOneAndReplace({ _id }, bag);

@@ -1,5 +1,7 @@
 import { store } from "./index";
 import { onCatch } from "../requests.ts/requestData";
+import { Tuser } from "../reducers/users";
+import mainSetter from "./mainSetter";
 
 class Users {
   get() {
@@ -18,6 +20,30 @@ class Users {
   getFromStore() {
     return store.getState().users.users;
   }
+
+  openNew() {
+    store.dispatch({ type: "NEW_USER" });
+  }
+
+  create = (bag: Omit<Tuser, "_id">) => {
+    console.log("bag: ", bag);
+    fetch("/query/user", {
+      method: "PUT",
+      body: JSON.stringify(bag),
+      headers: { "content-type": "application/json" },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Юзер добавлен");
+          this.get();
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
 
   filter(e: React.FormEvent<HTMLInputElement>) {
     console.log(e.currentTarget.value);

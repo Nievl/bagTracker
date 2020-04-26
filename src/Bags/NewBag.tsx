@@ -4,6 +4,7 @@ import { emptyBag } from "../store/reducers/bags";
 import bagSetter from "../store/actions/bags";
 const { Option } = Select;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { _id, ...newBag } = emptyBag;
 
 function NewBag() {

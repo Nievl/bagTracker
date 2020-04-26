@@ -1,11 +1,14 @@
-const initialState = {
+export const emptyUser: Tuser = {
+  _id: "",
+  name: "",
+};
+
+const initialState: Tusers = {
   users: [],
-  selected: {
-    _id: "",
-    name: "",
-  },
+  selected: { ...emptyUser },
   card: false,
   isLoading: true,
+  newCard: false,
 };
 
 export default function users(state = initialState, action: any) {
@@ -21,12 +24,12 @@ export default function users(state = initialState, action: any) {
     case "CLOSE_USER":
       return {
         ...state,
-        selected: {
-          _id: "",
-          name: "",
-        },
+        selected: { ...emptyUser },
         card: false,
+        newCard: false,
       };
+    case "NEW_USER":
+      return { ...state, newCard: true };
     case "LOADING_USER":
       return { ...state, isLoading: true };
     default:
@@ -40,8 +43,9 @@ export type Tuser = {
 };
 
 export type Tusers = {
-  users: Tuser[] | [];
+  users: Tuser[];
   selected: Tuser;
   card: boolean;
   isLoading: boolean;
+  newCard: boolean;
 };

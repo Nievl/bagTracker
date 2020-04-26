@@ -1,5 +1,5 @@
 async function newUser(req, res) {
-  const collection = req.app.locals.db.collection("Users");
+  const collection = req.app.locals.db.collection("users");
   if (!req.body) return res.sendStatus(400);
 
   try {

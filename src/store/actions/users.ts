@@ -14,6 +14,11 @@ class Users {
       })
       .catch(onCatch);
   }
+
+  getFromStore() {
+    return store.getState().users.users;
+  }
+
   filter(e: React.FormEvent<HTMLInputElement>) {
     console.log(e.currentTarget.value);
   }
@@ -21,6 +26,7 @@ class Users {
   close() {
     store.dispatch({ type: "CLOSE_USER" });
   }
+
   select(id: string) {
     store.dispatch({ type: "SELECT_USER", user: id });
   }

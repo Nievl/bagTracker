@@ -44,6 +44,31 @@ class Bags {
       .catch(onCatch);
   };
 
+  select(e: React.MouseEvent<HTMLElement>) {
+    const id = e.currentTarget.dataset.id;
+    store.dispatch({ type: "SELECT_BAG", id });
+  }
+
+  edit = (bag: Tbag) => {
+    console.log("bag: ", bag);
+    fetch("/query/bag", {
+      method: "POST",
+      body: JSON.stringify(bag),
+      headers: { "content-type": "application/json" },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Баг изменен");
+          this.get();
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
+
   delete = (e: React.MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.dataset.id;
     fetch(`/query/bag/${id}`, { method: "DELETE" })
@@ -62,11 +87,6 @@ class Bags {
 
   close() {
     store.dispatch({ type: "CLOSE_BAG" });
-  }
-
-  select(e: React.MouseEvent<HTMLElement>) {
-    const id = e.currentTarget.dataset.id;
-    store.dispatch({ type: "SELECT_BAG", id });
   }
 }
 

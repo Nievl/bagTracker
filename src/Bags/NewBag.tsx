@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Modal, Button, Form, Input } from "antd";
+import { Modal, Button, Form, Input, Select } from "antd";
 import { emptyBag } from "../store/reducers/bags";
 import bagSetter from "../store/actions/bags";
+const { Option } = Select;
 
 const { _id, ...newBag } = emptyBag;
 
 function NewBag() {
   const [bag, setBag] = useState(newBag);
-  const onChange = (e: any) => {
-    setBag({ ...bag, ...e });
-    console.log(bag);
-  };
+  const onChange = (e: any) => setBag({ ...bag, ...e });
+
   const onFinish = () => bagSetter.create(bag);
   return (
     <Modal
@@ -30,12 +29,15 @@ function NewBag() {
           <Input />
         </Form.Item>
         <Form.Item label="Статус" name="status">
+          <Select>
+            <Option value="active">активна</Option>
+            <Option value="closed">закрыто</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="Пользователь" name="userID">
           <Input />
         </Form.Item>
         <Form.Item label="Описание" name="description">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Пользователь" name="userID">
           <Input />
         </Form.Item>
       </Form>

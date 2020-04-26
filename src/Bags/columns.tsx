@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "antd";
+import { Tag } from "antd";
 import bagSetter from "../store/actions/bags";
+import { Tbag } from "../store/reducers/bags";
 
 const columns = [
   {
@@ -11,12 +12,15 @@ const columns = [
   {
     title: "Статус",
     dataIndex: "status",
-    minWidth: 50,
+    render: (status: "active" | "closed") => {
+      const color = status === "active" ? "green" : "red";
+      const text = status === "active" ? "Активно" : "Закрыто";
+      return <Tag color={color}>{text}</Tag>;
+    },
   },
   {
     title: "Пользователь",
-    dataIndex: "userID",
-    minWidth: 50,
+    dataIndex: "userName",
   },
   {
     title: "Описание",
@@ -27,7 +31,7 @@ const columns = [
     title: "Операции",
     dataIndex: "",
     key: "x",
-    render: e => (
+    render: (e: Tbag) => (
       <>
         <a onClick={bagSetter.select} data-id={e._id}>
           Редактировать

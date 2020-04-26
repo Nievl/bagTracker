@@ -4,7 +4,7 @@ async function editBag(req, res) {
   if (!req.body) return res.sendStatus(400);
 
   try {
-    const { name, status, description, userID, id } = req.body;
+    const { name, status, description, userID, _id: id } = req.body;
     if (!id) throw new Error("_id is required");
     const bag = { name, status, description, userID };
     const _id = new ObjectID(id);

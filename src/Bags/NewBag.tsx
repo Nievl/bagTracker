@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Modal, Button, Form, Input, Select } from "antd";
 import { emptyBag } from "../store/reducers/bags";
 import bagSetter from "../store/actions/bags";
+import { connect } from "react-redux";
+import { Tstate } from "../store/reducers";
+import { Tuser } from "../store/reducers/users";
 const { Option } = Select;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { _id, ...newBag } = emptyBag;
 
-function NewBag() {
+function NewBag({ users }: { users: Tuser[] }) {
   const [bag, setBag] = useState(newBag);
   const onChange = (e: any) => setBag({ ...bag, ...e });
 
@@ -36,7 +39,14 @@ function NewBag() {
           </Select>
         </Form.Item>
         <Form.Item label="Пользователь" name="userID">
-          <Input />
+          <Select>
+            <Option value="-1">Не назначен</Option>
+            {users.map(user => (
+              <Option value={user._id} key={user._id}>
+                {user.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="Описание" name="description">
           <Input />
@@ -46,4 +56,4 @@ function NewBag() {
   );
 }
 
-export default NewBag;
+export default connect((state: Tstate) => ({ users: state.users.users }))(NewBag);

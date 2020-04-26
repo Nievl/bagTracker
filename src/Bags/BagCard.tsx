@@ -4,9 +4,10 @@ import { Tstate } from "../store/reducers";
 import { Tbag } from "../store/reducers/bags";
 import { Button, Modal, Input, Select, Form } from "antd";
 import bagSetter from "../store/actions/bags";
+import { Tuser } from "../store/reducers/users";
 const { Option } = Select;
 
-function BagCard({ selected }: { selected: Tbag }) {
+function BagCard({ selected, users }: { selected: Tbag; users: Tuser[] }) {
   const [bag, setBag] = useState(selected);
   const onChange = (e: any) => setBag({ ...bag, ...e });
   const onFinish = () => bagSetter.edit(bag);
@@ -42,7 +43,14 @@ function BagCard({ selected }: { selected: Tbag }) {
           </Select>
         </Form.Item>
         <Form.Item label="Пользователь" name="userID">
-          <Input />
+          <Select>
+            <Option value="-1">Не назначен</Option>
+            {users.map(user => (
+              <Option value={user._id} key={user._id}>
+                {user.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="Описание" name="description">
           <Input />
@@ -52,6 +60,9 @@ function BagCard({ selected }: { selected: Tbag }) {
   );
 }
 
-const mapStateToProps = (state: Tstate) => ({ selected: state.bags.selected });
+const mapStateToProps = (state: Tstate) => ({
+  selected: state.bags.selected,
+  users: state.users.users,
+});
 
 export default connect(mapStateToProps)(BagCard);

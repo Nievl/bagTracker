@@ -1,3 +1,7 @@
+import React from "react";
+import { Button } from "antd";
+import bagSetter from "../store/actions/bags";
+
 const columns = [
   {
     title: "Имя",
@@ -18,6 +22,16 @@ const columns = [
     title: "Описание",
     dataIndex: "description",
     minWidth: 50,
+  },
+  {
+    title: "Операции",
+    dataIndex: "",
+    key: "x",
+    render: e => (
+      <Button onClick={bagSetter.select} data-id={e._id}>
+        Редактировать
+      </Button>
+    ),
   },
 ];
 

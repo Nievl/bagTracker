@@ -12,7 +12,9 @@ import userSetter from "../store/actions/users";
 
 const Users = ({ list = [], loading }: { list: Tuser[]; loading: boolean }) => (
   <>
-    <SearchBar action={userSetter.filter} length={list.length} />
+    <div className="bar">
+      <SearchBar action={userSetter.filter} length={list.length} />
+    </div>
     <Table columns={columns} dataSource={list} loading={loading} rowKey="_id" />
   </>
 );

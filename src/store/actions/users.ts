@@ -3,11 +3,11 @@ import { onCatch } from "../requests.ts/requestData";
 
 class Users {
   get() {
-    fetch("/query/bags")
+    fetch("/query/users")
       .then(res => res.json())
       .then(res => {
         if (res.success) {
-          store.dispatch({ type: "ADD_BAGS", bags: res.data });
+          store.dispatch({ type: "ADD_USERS", users: res.data });
         } else {
           throw new Error(res.description);
         }
@@ -19,10 +19,10 @@ class Users {
   }
 
   close() {
-    store.dispatch({ type: "CLOSE_BAG" });
+    store.dispatch({ type: "CLOSE_USER" });
   }
   select(id: string) {
-    store.dispatch({ type: "SELECT_BAG", bag: id });
+    store.dispatch({ type: "SELECT_USER", user: id });
   }
 }
 

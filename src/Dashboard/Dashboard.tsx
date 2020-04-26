@@ -6,10 +6,12 @@ import MessageWindow from "../MessageWindow/MessageWindow";
 import { Tstate } from "../store/reducers";
 import mainView from "./mainView";
 import bagSetter from "../store/actions/bags";
+import userSetter from "../store/actions/users";
 
 function Dashboard({ name }: { name: string }) {
   useEffect(() => {
     bagSetter.get();
+    userSetter.get();
   }, []);
 
   return (

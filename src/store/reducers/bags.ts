@@ -1,17 +1,20 @@
-const initialState = {
-  bags: [],
-  selected: {
-    _id: "",
-    name: "",
-    status: "",
-    description: "",
-    userID: "",
-  },
-  card: false,
-  isLoading: true,
+export const emptyBag = {
+  _id: "",
+  name: "",
+  status: "",
+  description: "",
+  userID: "",
 };
 
-export default function bags(state = initialState, action: any) {
+const initialState: Tbags = {
+  bags: [],
+  selected: { ...emptyBag },
+  card: false,
+  isLoading: true,
+  newCard: false,
+};
+
+export default function bags(state: Tbags = initialState, action: any) {
   switch (action.type) {
     case "ADD_BAGS":
       return {
@@ -24,33 +27,31 @@ export default function bags(state = initialState, action: any) {
     case "CLOSE_BAG":
       return {
         ...state,
-        selected: {
-          _id: "",
-          name: "",
-          status: "",
-          description: "",
-          userID: "",
-        },
+        selected: { ...emptyBag },
         card: false,
+        newCard: false,
       };
     case "LOADING_BAG":
       return { ...state, isLoading: true };
+    case "NEW_BAG":
+      return { ...state, newCard: true };
     default:
       return state;
   }
 }
 
-export type Tbag = {
+export interface Tbag {
   _id: string;
   name: string;
   status: string;
   description: string;
   userID: string;
-};
+}
 
-export type Tbags = {
-  bags: Tbag[] | [];
+export interface Tbags {
+  bags: Array<Tbag>;
   selected: Tbag;
   card: boolean;
   isLoading: boolean;
-};
+  newCard: boolean;
+}

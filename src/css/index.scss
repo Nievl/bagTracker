@@ -15,6 +15,12 @@ footer {
 main {
   height: calc(100vh - #{$header_height});
   display: flex;
+  .bar {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .main_board {
     height: 100%;
     width: 100%;

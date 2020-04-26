@@ -28,9 +28,15 @@ const columns = [
     dataIndex: "",
     key: "x",
     render: e => (
-      <Button onClick={bagSetter.select} data-id={e._id}>
-        Редактировать
-      </Button>
+      <>
+        <a onClick={bagSetter.select} data-id={e._id}>
+          Редактировать
+        </a>
+        {"\n"}
+        <a onClick={bagSetter.delete} data-id={e._id}>
+          Удалить
+        </a>
+      </>
     ),
   },
 ];

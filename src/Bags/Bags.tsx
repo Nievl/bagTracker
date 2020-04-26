@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// import columns from "./columns";
 import { Tstate } from "../store/reducers";
 import { Tbag } from "../store/reducers/bags";
 import { Table, Button } from "antd";
@@ -11,8 +10,6 @@ import bagSetter from "../store/actions/bags";
 import { PlusOutlined } from "@ant-design/icons";
 import NewBag from "./NewBag";
 import BagCard from "./BagCard";
-// import customerSetter from "../storeActions/customer";
-// import Search from "../CommonComponent/Search";
 
 const Bags = ({
   list = [],

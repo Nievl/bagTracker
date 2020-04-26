@@ -35,6 +35,23 @@ class Bags {
       .then(res => {
         if (res.success) {
           mainSetter.addMessage("Баг добавлен");
+          this.get();
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
+
+  delete = (e: React.MouseEvent<HTMLElement>) => {
+    const id = e.currentTarget.dataset.id;
+    fetch(`/query/bag/${id}`, { method: "DELETE" })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Баг удален");
+          this.get();
           this.close();
         } else {
           throw new Error(res.description);

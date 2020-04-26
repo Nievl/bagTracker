@@ -1,7 +1,7 @@
-import { dataSetExtractor } from "./../../commonFunction/extractors";
 import { store } from "./index";
 import { onCatch } from "../requests.ts/requestData";
 import { Tbag } from "../reducers/bags";
+import mainSetter from "./mainSetter";
 
 class Bags {
   get() {
@@ -24,18 +24,32 @@ class Bags {
     store.dispatch({ type: "NEW_BAG" });
   }
 
-  create() {}
+  create = (bag: Omit<Tbag, "_id">) => {
+    console.log("bag: ", bag);
+    fetch("/query/bag", {
+      method: "PUT",
+      body: JSON.stringify(bag),
+      headers: { "content-type": "application/json" },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Баг добавлен");
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
 
   close() {
     store.dispatch({ type: "CLOSE_BAG" });
   }
 
   select(e: React.MouseEvent<HTMLElement>) {
-    // const id = dataSetExtractor(e.currentTarget, "id");
     const id = e.currentTarget.dataset.id;
-    const { bags } = store.getState().bags;
-    const bag = bags.find((bag: Tbag) => bag._id === id);
-    store.dispatch({ type: "SELECT_BAG", bag });
+    store.dispatch({ type: "SELECT_BAG", id });
   }
 }
 

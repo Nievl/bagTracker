@@ -1,4 +1,4 @@
-export const emptyBag = {
+export const emptyBag: Tbag = {
   _id: "",
   name: "",
   status: "",
@@ -23,7 +23,11 @@ export default function bags(state: Tbags = initialState, action: any) {
         isLoading: false,
       };
     case "SELECT_BAG":
-      return { ...state, selected: action.bag, card: true };
+      return {
+        ...state,
+        selected: state.bags.find(bag => bag._id === action.id),
+        card: true,
+      };
     case "CLOSE_BAG":
       return {
         ...state,

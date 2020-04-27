@@ -1,26 +1,30 @@
-export const emptyUser: Tuser = {
+export const emptyUser = {
   _id: "",
   name: "",
 };
 
-const initialState: Tusers = {
-  users: [],
+const initialState = {
+  list: [],
   selected: { ...emptyUser },
   card: false,
   isLoading: true,
   newCard: false,
 };
 
-export default function users(state = initialState, action: any) {
+export default function users(state: Tusers = initialState, action: any): Tusers {
   switch (action.type) {
     case "ADD_USERS":
       return {
         ...state,
-        users: action.users,
+        list: action.users,
         isLoading: false,
       };
     case "SELECT_USER":
-      return { ...state, selected: action.user, card: true };
+      return {
+        ...state,
+        selected: state.list.find(user => user._id === action.id) || { ...emptyUser },
+        card: true,
+      };
     case "CLOSE_USER":
       return {
         ...state,
@@ -43,7 +47,7 @@ export type Tuser = {
 };
 
 export type Tusers = {
-  users: Tuser[];
+  list: Tuser[];
   selected: Tuser;
   card: boolean;
   isLoading: boolean;

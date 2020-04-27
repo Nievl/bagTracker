@@ -36,7 +36,7 @@ const Bags = ({
 );
 
 export default connect((state: Tstate) => ({
-  list: state.bags.bags,
+  list: state.bags.list,
   loading: state.bags.isLoading,
   card: state.bags.card,
   newCard: state.bags.newCard,

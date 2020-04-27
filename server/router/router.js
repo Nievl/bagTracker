@@ -13,7 +13,7 @@ router.post("/query/bag", editBag);
 router.get("/query/users", getUsers);
 router.get("/query/user/:id", getUser);
 router.put("/query/user", newUser);
-router.delete("/query/user", deleteUser);
+router.delete("/query/user/:id", deleteUser);
 router.post("/query/user", editUser);
 
 module.exports = router;

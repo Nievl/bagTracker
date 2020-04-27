@@ -9,22 +9,37 @@ import SearchBar from "../SearchBar/SearchBar";
 import userSetter from "../store/actions/users";
 import { PlusOutlined } from "@ant-design/icons";
 import NewUser from "./NewUser";
+import UserCard from "./UserCard";
 
-const Users = ({ list = [], newUser, loading }: { list: Tuser[]; newUser: boolean; loading: boolean }) => (
-  <>
-    <div className="bar">
-      <SearchBar action={userSetter.filter} length={list.length} />
-      <Button icon={<PlusOutlined />} type="primary" onClick={userSetter.openNew}>
-        Добавить
-      </Button>
-    </div>
-    <Table columns={columns} dataSource={list} loading={loading} rowKey="_id" />
-    {newUser && <NewUser />}
-  </>
-);
+function Users({
+  list = [],
+  newUser,
+  userCard,
+  loading,
+}: {
+  list: Tuser[];
+  newUser: boolean;
+  userCard: boolean;
+  loading: boolean;
+}) {
+  return (
+    <>
+      <div className="bar">
+        <SearchBar action={userSetter.filter} length={list.length} />
+        <Button icon={<PlusOutlined />} type="primary" onClick={userSetter.openNew}>
+          Добавить
+        </Button>
+      </div>
+      <Table columns={columns} dataSource={list} loading={loading} rowKey="_id" />
+      {newUser && <NewUser />}
+      {userCard && <UserCard />}
+    </>
+  );
+}
 
 export default connect((state: Tstate) => ({
-  list: state.users.users,
+  list: state.users.list,
   loading: state.users.isLoading,
   newUser: state.users.newCard,
+  userCard: state.users.card,
 }))(Users);

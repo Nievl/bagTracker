@@ -56,4 +56,4 @@ function NewBag({ users }: { users: Tuser[] }) {
   );
 }
 
-export default connect((state: Tstate) => ({ users: state.users.users }))(NewBag);
+export default connect((state: Tstate) => ({ users: state.users.list }))(NewBag);

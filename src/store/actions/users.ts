@@ -18,7 +18,7 @@ class Users {
   }
 
   getFromStore() {
-    return store.getState().users.users;
+    return store.getState().users.list;
   }
 
   openNew() {
@@ -45,6 +45,22 @@ class Users {
       .catch(onCatch);
   };
 
+  delete = (e: React.MouseEvent<HTMLElement>) => {
+    const id = e.currentTarget.dataset.id;
+    fetch(`/query/user/${id}`, { method: "DELETE" })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Пользователь удален");
+          this.get();
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
+
   filter(e: React.FormEvent<HTMLInputElement>) {
     console.log(e.currentTarget.value);
   }
@@ -53,8 +69,28 @@ class Users {
     store.dispatch({ type: "CLOSE_USER" });
   }
 
-  select(id: string) {
-    store.dispatch({ type: "SELECT_USER", user: id });
+  edit = (user: Tuser) => {
+    fetch("/query/user", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: { "content-type": "application/json" },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          mainSetter.addMessage("Пользователь изменен");
+          this.get();
+          this.close();
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  };
+
+  select(e: React.MouseEvent<HTMLElement>) {
+    const id = e.currentTarget.dataset.id;
+    store.dispatch({ type: "SELECT_USER", id });
   }
 }
 

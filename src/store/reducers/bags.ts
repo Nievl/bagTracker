@@ -1,6 +1,6 @@
 import { Tuser } from "./users";
 
-export const emptyBag: Tbag = {
+export const emptyBag = {
   _id: "",
   name: "",
   status: "",
@@ -9,26 +9,26 @@ export const emptyBag: Tbag = {
   user: [],
 };
 
-const initialState: Tbags = {
-  bags: [],
+const initialState = {
+  list: [],
   selected: { ...emptyBag },
   card: false,
   isLoading: true,
   newCard: false,
 };
 
-export default function bags(state: Tbags = initialState, action: any) {
+export default function bags(state: Tbags = initialState, action: any): Tbags {
   switch (action.type) {
     case "ADD_BAGS":
       return {
         ...state,
-        bags: action.bags,
+        list: action.bags,
         isLoading: false,
       };
     case "SELECT_BAG":
       return {
         ...state,
-        selected: state.bags.find(bag => bag._id === action.id),
+        selected: state.list.find(bag => bag._id === action.id) || { ...emptyBag },
         card: true,
       };
     case "CLOSE_BAG":
@@ -47,19 +47,25 @@ export default function bags(state: Tbags = initialState, action: any) {
   }
 }
 
-export interface Tbag {
+export type Tbag = {
   _id: string;
   name: string;
   status: string;
   description: string;
   userID: string;
   user: Tuser[];
-}
+};
 
-export interface Tbags {
-  bags: Array<Tbag>;
+export type Tbags = {
+  list: Array<Tbag>;
   selected: Tbag;
   card: boolean;
   isLoading: boolean;
   newCard: boolean;
-}
+};
+
+type Taction = {
+  type: string;
+  bags?: Array<Tbag>;
+  id?: string;
+};

@@ -62,7 +62,7 @@ function BagCard({ selected, users }: { selected: Tbag; users: Tuser[] }) {
 
 const mapStateToProps = (state: Tstate) => ({
   selected: state.bags.selected,
-  users: state.users.users,
+  users: state.users.list,
 });
 
 export default connect(mapStateToProps)(BagCard);

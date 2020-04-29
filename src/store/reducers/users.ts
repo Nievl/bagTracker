@@ -9,6 +9,7 @@ const initialState = {
   card: false,
   isLoading: true,
   newCard: false,
+  searchValue: "",
 };
 
 export default function users(state: Tusers = initialState, action: any): Tusers {
@@ -18,6 +19,7 @@ export default function users(state: Tusers = initialState, action: any): Tusers
         ...state,
         list: action.users,
         isLoading: false,
+        searchValue: "",
       };
     case "SELECT_USER":
       return {
@@ -32,6 +34,8 @@ export default function users(state: Tusers = initialState, action: any): Tusers
         card: false,
         newCard: false,
       };
+    case "FILTER_USER":
+      return { ...state, isLoading: true, searchValue: action.value };
     case "NEW_USER":
       return { ...state, newCard: true };
     case "LOADING_USER":
@@ -52,4 +56,5 @@ export type Tusers = {
   card: boolean;
   isLoading: boolean;
   newCard: boolean;
+  searchValue: string;
 };

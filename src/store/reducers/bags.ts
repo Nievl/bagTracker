@@ -15,6 +15,7 @@ const initialState = {
   card: false,
   isLoading: true,
   newCard: false,
+  searchValue: "",
 };
 
 export default function bags(state: Tbags = initialState, action: any): Tbags {
@@ -24,6 +25,7 @@ export default function bags(state: Tbags = initialState, action: any): Tbags {
         ...state,
         list: action.bags,
         isLoading: false,
+        searchValue: "",
       };
     case "SELECT_BAG":
       return {
@@ -38,6 +40,8 @@ export default function bags(state: Tbags = initialState, action: any): Tbags {
         card: false,
         newCard: false,
       };
+    case "FILTER_BAG":
+      return { ...state, searchValue: action.value, isLoading: true };
     case "LOADING_BAG":
       return { ...state, isLoading: true };
     case "NEW_BAG":
@@ -62,6 +66,7 @@ export type Tbags = {
   card: boolean;
   isLoading: boolean;
   newCard: boolean;
+  searchValue: string;
 };
 
 type Taction = {

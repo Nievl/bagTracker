@@ -17,24 +17,18 @@ function Bags({
   newCard,
   card,
   loading,
+  value,
 }: {
   list: Tbag[];
   newCard: boolean;
   card: boolean;
   loading: boolean;
+  value: string;
 }) {
-  const onchange = debounce((e: any) => bagSetter.filter(e.target.value), 500);
-
   return (
     <>
       <div className="bar">
-        <SearchBar
-          action={(e: React.FormEvent<HTMLInputElement>) => {
-            e.persist();
-            onchange(e);
-          }}
-          length={list.length}
-        />
+        <SearchBar action={bagSetter.filter} length={list.length} value={value} />
         <Button icon={<PlusOutlined />} type="primary" onClick={bagSetter.openNew}>
           Добавить
         </Button>
@@ -51,4 +45,5 @@ export default connect((state: Tstate) => ({
   loading: state.bags.isLoading,
   card: state.bags.card,
   newCard: state.bags.newCard,
+  value: state.bags.searchValue,
 }))(Bags);

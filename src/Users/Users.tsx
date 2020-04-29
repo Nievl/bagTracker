@@ -16,16 +16,18 @@ function Users({
   newUser,
   userCard,
   loading,
+  value,
 }: {
   list: Tuser[];
   newUser: boolean;
   userCard: boolean;
   loading: boolean;
+  value: string;
 }) {
   return (
     <>
       <div className="bar">
-        <SearchBar action={userSetter.filter} length={list.length} />
+        <SearchBar action={userSetter.filter} length={list.length} value={value} />
         <Button icon={<PlusOutlined />} type="primary" onClick={userSetter.openNew}>
           Добавить
         </Button>
@@ -42,4 +44,5 @@ export default connect((state: Tstate) => ({
   loading: state.users.isLoading,
   newUser: state.users.newCard,
   userCard: state.users.card,
+  value: state.users.searchValue,
 }))(Users);

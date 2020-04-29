@@ -1,3 +1,4 @@
+import { debounce } from "underscore";
 import { store } from "./index";
 import { onCatch } from "../requests.ts/requestData";
 import { Tuser } from "../reducers/users";
@@ -61,9 +62,25 @@ class Users {
       .catch(onCatch);
   };
 
-  filter(e: React.FormEvent<HTMLInputElement>) {
-    console.log(e.currentTarget.value);
-  }
+  filter = (e: React.FormEvent<HTMLInputElement>) => {
+    e.persist();
+    const value = e.currentTarget.value.trim();
+    this.search(value);
+    store.dispatch({ type: "FILTER_USER", value });
+  };
+
+  search = debounce((value: string) => {
+    fetch(`/query/users?search=${value}`)
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          store.dispatch({ type: "ADD_USERS", users: res.data });
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
+  }, 500);
 
   close() {
     store.dispatch({ type: "CLOSE_USER" });

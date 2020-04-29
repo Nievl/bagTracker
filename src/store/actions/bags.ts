@@ -1,3 +1,4 @@
+import { debounce } from "underscore";
 import { store } from "./index";
 import { onCatch } from "../requests.ts/requestData";
 import { Tbag } from "../reducers/bags";
@@ -16,10 +17,15 @@ class Bags {
       })
       .catch(onCatch);
   }
-  filter(e: string) {
-    // console.log(e);
-    const value = e.trim();
-    store.dispatch({ type: "LOADING_BAG" });
+
+  filter = (e: React.FormEvent<HTMLInputElement>) => {
+    e.persist();
+    const value = e.currentTarget.value.trim();
+    this.search(value);
+    store.dispatch({ type: "FILTER_BAG", value });
+  };
+
+  search = debounce((value: string) => {
     fetch(`/query/bags?search=${value}`)
       .then(res => res.json())
       .then(res => {
@@ -30,7 +36,7 @@ class Bags {
         }
       })
       .catch(onCatch);
-  }
+  }, 500);
 
   openNew() {
     store.dispatch({ type: "NEW_BAG" });

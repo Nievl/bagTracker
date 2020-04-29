@@ -16,8 +16,20 @@ class Bags {
       })
       .catch(onCatch);
   }
-  filter(e: React.FormEvent<HTMLInputElement>) {
-    console.log(e.currentTarget.value);
+  filter(e: string) {
+    // console.log(e);
+    const value = e.trim();
+    store.dispatch({ type: "LOADING_BAG" });
+    fetch(`/query/bags?search=${value}`)
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          store.dispatch({ type: "ADD_BAGS", bags: res.data });
+        } else {
+          throw new Error(res.description);
+        }
+      })
+      .catch(onCatch);
   }
 
   openNew() {
@@ -25,7 +37,7 @@ class Bags {
   }
 
   create = (bag: Omit<Tbag, "_id">) => {
-    console.log("bag: ", bag);
+    // console.log("bag: ", bag);
     fetch("/query/bag", {
       method: "PUT",
       body: JSON.stringify(bag),

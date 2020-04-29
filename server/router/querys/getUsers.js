@@ -1,7 +1,14 @@
 async function getUsers(req, res) {
   const collection = req.app.locals.db.collection("users");
   try {
-    const result = await collection.find().toArray();
+    const { search } = req.query;
+    let result;
+    if (search) {
+      result = await collection.find({ name: { $regex: search, $options: "i" } }).toArray();
+    } else {
+      result = await collection.find().toArray();
+    }
+
     let response;
 
     if (result) {

@@ -5,7 +5,6 @@ import { Tstate } from "../store/reducers";
 import { Tbag } from "../store/reducers/bags";
 import { Table, Button } from "antd";
 import columns from "./columns";
-import { debounce } from "underscore";
 import SearchBar from "../SearchBar/SearchBar";
 import bagSetter from "../store/actions/bags";
 import { PlusOutlined } from "@ant-design/icons";

@@ -6,6 +6,7 @@ import mainSetter from "./mainSetter";
 
 class Bags {
   get() {
+    store.dispatch({ type: "FILTER_BAG", value: "" });
     fetch("/query/bags")
       .then(res => res.json())
       .then(res => {

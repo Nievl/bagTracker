@@ -25,7 +25,6 @@ export default function bags(state: Tbags = initialState, action: any): Tbags {
         ...state,
         list: action.bags,
         isLoading: false,
-        searchValue: "",
       };
     case "SELECT_BAG":
       return {

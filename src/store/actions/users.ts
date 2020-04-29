@@ -6,6 +6,7 @@ import mainSetter from "./mainSetter";
 
 class Users {
   get() {
+    store.dispatch({ type: "FILTER_USER", value: "" });
     fetch("/query/users")
       .then(res => res.json())
       .then(res => {

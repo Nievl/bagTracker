@@ -19,7 +19,6 @@ export default function users(state: Tusers = initialState, action: any): Tusers
         ...state,
         list: action.users,
         isLoading: false,
-        searchValue: "",
       };
     case "SELECT_USER":
       return {

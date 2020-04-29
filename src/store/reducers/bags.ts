@@ -1,4 +1,4 @@
-import { Tuser } from "./users";
+import { Tuser, emptyUser } from "./users";
 
 export const emptyBag = {
   _id: "",
@@ -6,7 +6,7 @@ export const emptyBag = {
   status: "",
   description: "",
   userID: "",
-  user: [],
+  user: emptyUser,
 };
 
 const initialState = {
@@ -53,7 +53,7 @@ export type Tbag = {
   status: string;
   description: string;
   userID: string;
-  user: Tuser[];
+  user?: Tuser;
 };
 
 export type Tbags = {

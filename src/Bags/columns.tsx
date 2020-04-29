@@ -22,7 +22,7 @@ const columns = [
   {
     title: "Пользователь",
     dataIndex: "user",
-    render: (user: Tuser[]) => user[0]?.name || "не назначен",
+    render: (user: Tuser) => user?.name || "не назначен",
   },
   {
     title: "Описание",

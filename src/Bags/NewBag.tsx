@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Input, Select } from "antd";
 import { emptyBag } from "../store/reducers/bags";
-import bagSetter from "../store/actions/bags";
+import bagSetter from "../store/requests/bags";
 import { connect } from "react-redux";
 import { Tstate } from "../store/reducers";
 import { Tuser } from "../store/reducers/users";

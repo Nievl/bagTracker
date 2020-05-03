@@ -6,7 +6,7 @@ import columns from "./columns";
 import { Tstate } from "../store/reducers";
 import { Tuser } from "../store/reducers/users";
 import SearchBar from "../SearchBar/SearchBar";
-import userSetter from "../store/actions/users";
+import userSetter from "../store/requests/users";
 import { PlusOutlined } from "@ant-design/icons";
 import NewUser from "./NewUser";
 import UserCard from "./UserCard";

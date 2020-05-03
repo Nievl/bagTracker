@@ -6,7 +6,7 @@ import { Tbag } from "../store/reducers/bags";
 import { Table, Button } from "antd";
 import columns from "./columns";
 import SearchBar from "../SearchBar/SearchBar";
-import bagSetter from "../store/actions/bags";
+import bagSetter from "../store/requests/bags";
 import { PlusOutlined } from "@ant-design/icons";
 import NewBag from "./NewBag";
 import BagCard from "./BagCard";

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Tstate } from "../store/reducers";
 import { Tbag } from "../store/reducers/bags";
 import { Button, Modal, Input, Select, Form } from "antd";
-import bagSetter from "../store/actions/bags";
 import { Tuser } from "../store/reducers/users";
+import bagSetter from "../store/requests/bags";
 const { Option } = Select;
 
 function BagCard({ selected, users }: { selected: Tbag; users: Tuser[] }) {

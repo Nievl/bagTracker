@@ -7,7 +7,7 @@ const selectHandler = ({ key }: { key: string }) => mainSetter.change(key);
 
 function MainMenu() {
   return (
-    <Menu defaultSelectedKeys={["bags"]} mode="inline" className="main_menu" onSelect={selectHandler}>
+    <Menu defaultSelectedKeys={["bags"]} mode="inline" className="main__menu" onSelect={selectHandler}>
       <Menu.Item key="bags">
         <PieChartOutlined />
         <span>Баги</span>

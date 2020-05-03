@@ -1,4 +1,5 @@
 import { Tuser, emptyUser } from "./users";
+import { TbagAction } from "../actions/bags";
 
 export const emptyBag = {
   _id: "",
@@ -18,7 +19,7 @@ const initialState = {
   searchValue: "",
 };
 
-export default function bags(state: Tbags = initialState, action: any): Tbags {
+export default function bags(state: Tbags = initialState, action: TbagAction): Tbags {
   switch (action.type) {
     case "ADD_BAGS":
       return {
@@ -66,10 +67,4 @@ export type Tbags = {
   isLoading: boolean;
   newCard: boolean;
   searchValue: string;
-};
-
-type Taction = {
-  type: string;
-  bags?: Array<Tbag>;
-  id?: string;
 };

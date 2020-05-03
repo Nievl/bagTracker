@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import bagSetter from "../store/actions/bags";
+import bagSetter from "../store/requests/bags";
 import { Tbag } from "../store/reducers/bags";
 import { Tuser } from "../store/reducers/users";
 

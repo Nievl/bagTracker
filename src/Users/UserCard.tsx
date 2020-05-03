@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Tstate } from "../store/reducers";
 import { Button, Modal, Input, Form } from "antd";
 import { Tuser } from "../store/reducers/users";
-import userSetter from "../store/actions/users";
+import userSetter from "../store/requests/users";
 
 function UserCard({ selected }: { selected: Tuser }) {
   const [user, setUser] = useState(selected);

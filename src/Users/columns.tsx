@@ -1,5 +1,5 @@
 import React from "react";
-import userSetter from "../store/actions/users";
+import userSetter from "../store/requests/users";
 import { Tuser } from "../store/reducers/users";
 
 const columns = [

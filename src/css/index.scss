@@ -21,13 +21,13 @@ main {
     justify-content: space-between;
     align-items: center;
   }
-  .main_board {
+  .main__board {
     height: 100%;
     width: 100%;
     // background-color: red;
   }
 
-  .main_menu {
+  .main__menu {
     height: calc(100vh - #{$header_height});
     width: 15vw;
   }

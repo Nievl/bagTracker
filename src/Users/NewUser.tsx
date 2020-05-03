@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Input } from "antd";
 import { emptyUser } from "../store/reducers/users";
-import userSetter from "../store/actions/users";
+import userSetter from "../store/requests/users";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { _id, ...newUser } = emptyUser;

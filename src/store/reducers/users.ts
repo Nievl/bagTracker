@@ -1,3 +1,5 @@
+import { TuserAction } from "../actions/users";
+
 export const emptyUser = {
   _id: "",
   name: "",
@@ -12,7 +14,7 @@ const initialState = {
   searchValue: "",
 };
 
-export default function users(state: Tusers = initialState, action: any): Tusers {
+export default function users(state: Tusers = initialState, action: TuserAction): Tusers {
   switch (action.type) {
     case "ADD_USERS":
       return {

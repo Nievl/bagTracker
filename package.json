@@ -23,7 +23,7 @@
     "react-table": "^7.0.4",
     "redux": "^4.0.5",
     "typescript": "^3.8.3",
-    "underscore": "^1.10.2"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
